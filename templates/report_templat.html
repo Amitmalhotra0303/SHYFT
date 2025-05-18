@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; }
+        h1 { color: #2c3e50; }
+        h2 { color: #3498db; margin-top: 1.5em; }
+        .source { font-size: 0.8em; color: #7f8c8d; margin-top: 2em; }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <div>{{ content|safe }}</div>
+    
+    <div class="source">
+        <h3>References</h3>
+        <ul>
+            {% for source in sources %}
+            <li><a href="{{ source }}">{{ source }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
