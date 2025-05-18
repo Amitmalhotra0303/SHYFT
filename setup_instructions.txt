@@ -1,0 +1,39 @@
+Multi-Agent Research Assistant - Setup Instructions
+
+Prerequisites:
+- Docker and Docker Compose installed
+- Python 3.9 or higher
+- API keys for OpenAI and SerpAPI
+
+Setup Steps:
+
+1. Clone the repository:
+   git clone https://github.com/yourusername/research-assistant.git
+   cd research-assistant
+
+2. Set up environment variables:
+   Create a .env file in the project root with:
+   OPENAI_API_KEY=your_openai_api_key
+   SERPAPI_API_KEY=your_serpapi_key
+
+3. Build and run the containers:
+   docker-compose up --build
+
+4. The system will be available at:
+   - API: http://localhost:8000
+   - API Docs: http://localhost:8000/docs
+   - Web UI: http://localhost:8501 (run separately with `streamlit run ui.py`)
+
+5. To stop the system:
+   docker-compose down
+
+Configuration Options:
+- To change the port: Modify docker-compose.yml
+- To adjust logging: Edit services/monitoring.py
+- To change LLM parameters: Edit agents/orchestrator.py
+
+Troubleshooting:
+- If containers fail to start, check logs with:
+  docker-compose logs
+- Ensure your API keys are valid
+- Make sure ports 8000 and 8501 are available

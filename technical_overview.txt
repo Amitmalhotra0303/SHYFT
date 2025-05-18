@@ -1,0 +1,70 @@
+Multi-Agent Research Assistant - Technical Overview
+
+Architecture:
+The system follows a multi-agent architecture with four specialized agents:
+1. Orchestrator: Manages workflow and coordinates other agents
+2. Researcher: Conducts web/document research
+3. Analyzer: Synthesizes information and resolves conflicts
+4. Writer: Generates the final report
+
+Components:
+- FastAPI backend for REST interface
+- LangChain framework for agent capabilities
+- Redis for task queue (basic implementation)
+- Docker containers for isolation
+- Streamlit for web interface
+
+Agent Design Decisions:
+1. Specialization:
+   - Each agent has a distinct responsibility
+   - Clear separation of concerns
+   - Optimized prompts for each role
+
+2. Communication:
+   - Direct method calls between agents
+   - Shared state through storage service
+   - Activity logging for traceability
+
+3. Error Handling:
+   - Basic try-catch blocks
+   - Status tracking for tasks
+   - Error propagation to API
+
+Tradeoffs Considered:
+1. Simplicity vs Flexibility:
+   - Chose straightforward agent roles over dynamic role assignment
+   - Easier to maintain but less adaptable
+
+2. Local Storage vs Database:
+   - Used local JSON storage for simplicity
+   - Sacrificed scalability for easier setup
+
+3. Synchronous vs Asynchronous:
+   - Mixed approach based on needs
+   - API endpoints async for performance
+   - Some agent operations synchronous for simplicity
+
+Performance Considerations:
+1. Token Usage:
+   - Basic budgeting through prompt design
+   - No advanced optimization
+
+2. Parallelism:
+   - Limited to Docker container level
+   - No intra-agent parallel processing
+
+3. Caching:
+   - Simple file-based caching
+   - No advanced memoization
+
+Future Extension Points:
+1. Add proper database backend
+2. Implement more sophisticated task queue
+3. Enhance error recovery mechanisms
+4. Add agent performance monitoring
+
+Key Strengths:
+- Clear separation of concerns
+- Easy to understand architecture
+- Straightforward deployment
+- Good foundation for extension

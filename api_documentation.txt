@@ -1,0 +1,83 @@
+Multi-Agent Research Assistant API Documentation
+
+Base URL: http://localhost:8000
+
+Endpoints:
+
+1. POST /research
+   - Submits a new research task
+   - Request Body:
+     {
+       "topic": "string" (required),
+       "depth": "string" (optional, values: "quick", "balanced", "deep")
+     }
+   - Response:
+     {
+       "id": "string",
+       "topic": "string",
+       "status": "string",
+       "progress": float
+     }
+
+2. GET /research/{task_id}/status
+   - Checks task status
+   - Response:
+     {
+       "id": "string",
+       "topic": "string",
+       "status": "string" (pending|in_progress|completed|failed),
+       "progress": float (0-1)
+     }
+
+3. GET /research/{task_id}/report
+   - Retrieves completed report
+   - Response:
+     {
+       "report": {
+         "text": "string",
+         "html": "string"
+       },
+       "sources": [
+         {
+           "title": "string",
+           "url": "string",
+           "credibility_score": float
+         }
+       ],
+       "reasoning_chain": [
+         {
+           "step": "string",
+           "details": {}
+         }
+       ]
+     }
+
+4. GET /research/{task_id}/activity
+   - Gets activity log
+   - Response:
+     {
+       "activities": [
+         {
+           "agent": "string",
+           "action": "string",
+           "timestamp": "string"
+         }
+       ]
+     }
+
+Error Responses:
+- 400 Bad Request: Invalid input
+- 404 Not Found: Task not found
+- 500 Internal Server Error: Processing error
+
+Example Usage:
+
+1. Start a research task:
+   POST /research
+   {"topic": "AI in healthcare"}
+
+2. Check status:
+   GET /research/1234-5678/status
+
+3. Get report:
+   GET /research/1234-5678/report
